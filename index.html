@@ -37,6 +37,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .disp em{font-style:normal;color:var(--pink)}
 html{overflow-x:clip}
 .ghost{font-family:var(--disp);font-weight:100;color:transparent;-webkit-text-stroke:1px var(--ghost);line-height:.8;pointer-events:none;user-select:none;white-space:nowrap}
+.theme{position:relative;display:grid;gap:8px;border-left:3px solid var(--pink);padding:2px 0 2px 16px;font-family:var(--kr);font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.45;color:var(--fg);max-width:none;margin:0}
+.theme .mono{color:var(--pink)}
 .kr-h{font-family:var(--kr);font-weight:300;font-size:clamp(18px,2.1vw,24px);line-height:1.55;color:var(--fg);max-width:44ch}
 .kr-h .sub{display:block;color:var(--fg-2);font-size:.72em;margin-top:6px}
 .wrap{padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
@@ -132,7 +134,7 @@ section{position:relative;overflow:hidden}
 .fmt h3{font-family:var(--kr);font-weight:500;font-size:15.5px;line-height:1.45;margin:0}
 .fmt p{color:var(--fg-2);font-size:13.5px}
 .fmt .sw{height:3px;background:var(--pink)}
-@media (max-width:1000px){.fmts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1000px){.fmts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.fmts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fmt:last-child:nth-child(odd){grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(10px,1.2vw,18px)}
   .fmt:last-child:nth-child(odd) .ph{grid-row:1/span 4}
@@ -245,6 +247,7 @@ dialog::backdrop{background:rgba(15,13,16,.9)}
   <div class="copy">
     <p class="mono"><b>00</b>&nbsp;&nbsp;Proposal · 2026.11.05</p>
     <h1 class="disp">Look<br>Twice<em>.</em></h1>
+    <p class="theme"><span class="mono">Our theme</span>말은 서툴러도,<br>표정·손·소리로 다&nbsp;통하는 다섯&nbsp;명.</p>
     <p class="kr-h">말이 거의 필요 없는 숏폼으로, 블링원을 「다시 찾아보는 그룹」으로 만들겠습니다.</p>
     <div class="meta mono">
       <div>To<span>월드케이팝센터</span></div>
@@ -309,16 +312,21 @@ dialog::backdrop{background:rgba(15,13,16,.9)}
 <section class="wrap" id="formats"><div class="block">
   <p class="chap mono"><span class="n">04</span> Formats — 예시</p>
   <div class="headrow">
-    <h2 class="disp">Five<br>formats<em>.</em></h2>
+    <h2 class="disp">Ten<br>formats<em>.</em></h2>
     <a class="cta" href="sketchboard/">Open sketchboard <span class="arr">→</span></a>
   </div>
-  <p class="kr-h">15~30초 세로 영상. 20편은 이 다섯 포맷을 돌려 가며 만듭니다.<span class="sub">카드의 영상은 멤버 프로필로 만든 AI 견본입니다. 「View sketchboard」를 누르면 컷 구성과 촬영 팁이 열립니다.</span></p>
+  <p class="kr-h">15~30초 세로 영상. 20편은 이 열 가지 포맷을 돌려 가며 만듭니다.<span class="sub">카드의 영상은 멤버 프로필로 만든 AI 견본입니다. 「View sketchboard」를 누르면 컷 구성과 촬영 팁이 열립니다.</span></p>
   <div class="fmts">
     <article class="fmt"><div class="ph"><video src="sb/v/s1.mp4" poster="sk/s1.jpg" muted loop playsinline autoplay preload="metadata" aria-label="한국어 0단계 견본 장면"></video><span class="num">1</span><span class="tg">Goods</span></div><div class="sw"></div><h3>「한국어 0단계」<br>엉뚱하게 답하기</h3><p>질문에 3초 고민 → 굿즈를 들고 자신 있게 엉뚱한 답. 뒤 멤버들의 무표정.</p><button class="sbv" type="button" data-f="1">View sketchboard <span class="arr">→</span></button></article>
     <article class="fmt"><div class="ph"><video src="sb/v/s2.mp4" poster="sk/s2.jpg" muted loop playsinline autoplay preload="metadata" aria-label="립 릴레이 견본 장면"></video><span class="num">2</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「립 한 번 = 멤버 체인지」<br>다섯 컬러 릴레이</h3><p>립을 바르고 렌즈에 「쪽」 → 다음 멤버, 다른 컬러. 컬러와 텍스처만 보여줍니다.</p><button class="sbv" type="button" data-f="2">View sketchboard <span class="arr">→</span></button></article>
     <article class="fmt"><div class="ph"><video src="sb/v/s3.mp4" poster="sk/s3.jpg" muted loop playsinline autoplay preload="metadata" aria-label="스킨케어 ASMR 견본 장면"></video><span class="num">3</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「블링원 스킨케어 ASMR」<br>다섯 손 릴레이</h3><p>손만 나오는 탑뷰. 뚜껑·펌핑·텍스처 소리. 스케줄이 바빠도 찍을 수 있습니다.</p><button class="sbv" type="button" data-f="3">View sketchboard <span class="arr">→</span></button></article>
     <article class="fmt"><div class="ph"><video src="sb/v/s4.mp4" poster="sk/s4.jpg" muted loop playsinline autoplay preload="metadata" aria-label="마지막 하나 쟁탈전 견본 장면"></video><span class="num">4</span><span class="tg">Goods Shop</span></div><div class="sw"></div><h3>「5초 무언 상황극」<br>마지막 하나 쟁탈전</h3><p>굿즈 하나에 다섯 명이 동시에 손 → 슬로모션 → 반전. 「굿즈샵에서는 하나씩 드려요」.</p><button class="sbv" type="button" data-f="4">View sketchboard <span class="arr">→</span></button></article>
     <article class="fmt"><div class="ph"><video src="sb/v/s5.mp4" poster="sk/s5.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Bubble Gum 챌린지 견본 장면"></video><span class="num">5</span><span class="tg">Music</span></div><div class="sw"></div><h3>「Bubble Gum」<br>풍선껌 손 안무 챌린지</h3><p>앉아서도 되는 8초 손 안무. 풍선 부는 손 → 「팡」. 팬이 따라 하기 쉬운 도구.</p><button class="sbv" type="button" data-f="5">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s6.mp4" poster="sk/s6.jpg" muted loop playsinline autoplay preload="metadata" aria-label="한국인 특징 따라 하기 견본 장면"></video><span class="num">6</span><span class="tg">Series</span></div><div class="sw"></div><h3>「한국인 특징 따라 하기」<br>닫힘 버튼 연타 편</h3><p>한국 사람이면 「맞아, 나 저래」. 멤버들이 배운 한국 습관을 말 없이 따라 합니다.</p><button class="sbv" type="button" data-f="6">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s7.mp4" poster="sk/s7.jpg" muted loop playsinline autoplay preload="metadata" aria-label="표정 번역기 견본 장면"></video><span class="num">7</span><span class="tg">Series</span></div><div class="sw"></div><h3>「표정 번역기」<br>한국어를 표정으로</h3><p>「헐」·「아 진짜?」·「대박」을 표정만으로. 서툰 한국어를 배우는 중인 콘셉트.</p><button class="sbv" type="button" data-f="7">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s8.mp4" poster="sk/s8.jpg" muted loop playsinline autoplay preload="metadata" aria-label="아이돌 현실 POV 견본 장면"></video><span class="num">8</span><span class="tg">Stage</span></div><div class="sw"></div><h3>「아이돌 현실 POV」<br>무대 3분, 대기 9시간</h3><p>졸다가 문이 열리면 바로 아이돌 모드. 그룹을 몰라도 웃기는 대비.</p><button class="sbv" type="button" data-f="8">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s9.mp4" poster="sk/s9.jpg" muted loop playsinline autoplay preload="metadata" aria-label="무대 전 1분 루틴 견본 장면"></video><span class="num">9</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「무대 전 1분 루틴」<br>클렌징부터 선크림까지</h3><p>블링원 화장품을 쓰는 순서대로, 소리와 손동작만으로 보여줍니다.</p><button class="sbv" type="button" data-f="9">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s10.mp4" poster="sk/s10.jpg" muted loop playsinline autoplay preload="metadata" aria-label="손바닥 텔레포트 견본 장면"></video><span class="num">10</span><span class="tg">Music</span></div><div class="sw"></div><h3>「손바닥 텔레포트」<br>연습복에서 무대 의상으로</h3><p>손바닥으로 렌즈를 가리면 무대 의상, 다른 멤버. 「Bubble Gum」 음원과 함께.</p><button class="sbv" type="button" data-f="10">View sketchboard <span class="arr">→</span></button></article>
   </div>
 </div></section>
 
@@ -333,9 +341,9 @@ dialog::backdrop{background:rgba(15,13,16,.9)}
     <div><p class="mono">Step 04</p><h3>Post</h3><p>공식 채널에 올리고, 매주 조회 수와 반응을 함께 봅니다.</p></div>
   </div>
   <ul class="weeks">
-    <li><span class="w">WEEK 01–02</span><span class="t">멤버별 시그니처 제스처 정하기 · 유튜브 쇼츠 시작 · 포맷 1·4로 첫 반응 보기</span><span class="c">05</span><span class="bar"><span style="width:25%"></span></span></li>
-    <li><span class="w">WEEK 03–04</span><span class="t">반응 좋은 포맷 늘리기 · 화장품 포맷(2·3) 시작</span><span class="c">10</span><span class="bar"><span style="width:50%"></span></span></li>
-    <li><span class="w">WEEK 05–06</span><span class="t">「Bubble Gum」 챌린지 공개 · 시리즈 이어 가기</span><span class="c">15</span><span class="bar"><span style="width:75%"></span></span></li>
+    <li><span class="w">WEEK 01–02</span><span class="t">멤버별 시그니처 제스처 정하기 · 유튜브 쇼츠 시작 · 포맷 1·6·8로 첫 반응 보기</span><span class="c">05</span><span class="bar"><span style="width:25%"></span></span></li>
+    <li><span class="w">WEEK 03–04</span><span class="t">반응 좋은 포맷 늘리기 · 화장품 포맷(3·9) 시작</span><span class="c">10</span><span class="bar"><span style="width:50%"></span></span></li>
+    <li><span class="w">WEEK 05–06</span><span class="t">「Bubble Gum」 챌린지(5·10) 공개 · 시리즈(6·7) 이어 가기</span><span class="c">15</span><span class="bar"><span style="width:75%"></span></span></li>
     <li><span class="w">WEEK 07–08</span><span class="t">마무리 5편 · 8주 결과 정리 및 다음 단계 협의</span><span class="c">20</span><span class="bar"><span style="width:100%"></span></span></li>
   </ul>
 </div></section>
@@ -425,15 +433,55 @@ const F=[
         ["5~6초","팡","박자에 맞춰 손뼉 「팡」, 뒤로 넘어가며 웃기","효과음: 팡"],
         ["6~10초","포인트","카메라를 가리키며 윙크, 한 번 더 빠르게 반복","자막: #BubbleGumChallenge"]],
   tip:"앉아서도 되는 동작이라 어디서든 찍을 수 있습니다. 「팡」 순간 굿즈가 튀어나오는 버전도 함께 찍어 둡니다.",prep:"없음",
-  caption:"같이 해요 🫧 #BubbleGumChallenge #블링원 #BLINGONE"}
+  caption:"같이 해요 🫧 #BubbleGumChallenge #블링원 #BLINGONE"},
+ {id:6,title:"「한국인 특징 따라 하기」 — 닫힘 버튼 연타 편",tags:["말 없음","10초","2~5명","연결: 시리즈"],
+  goal:"한국 사람이면 누구나 「맞아, 나 저래」 하는 습관을 멤버들이 배워서 따라 합니다. 블링원을 몰라도 공감해서 공유하는 포맷입니다. 매회 습관 하나씩 바꿉니다.",
+  cuts:[["0~2초","탑승","다섯 명이 엘리베이터에 타고, 문이 천천히 닫히기 시작","자막: 「한국인 특징 #1」"],
+        ["2~5초","연타","한 멤버가 아주 진지한 얼굴로 닫힘 버튼 연타","효과음: 딸깍딸깍"],
+        ["5~8초","전염","나머지 멤버도 하나둘 같은 얼굴로 따라 누름","점점 빨라지는 음악"],
+        ["8~10초","정적","문이 닫히고 다섯 명이 동시에 카메라를 무표정으로 봄","자막: 「다음 편: 초록불 깜빡이면 뛰기」"]],
+  tip:"다음 편 소재: 초록불 깜빡이면 뛰기, 뜨거운 국물에 「크으~」, 식당에서 수저부터 깔기, 택배 오면 문 앞에서 바로 뜯기. 놀리는 느낌이 아니라 「배워서 따라 하는」 톤으로 찍습니다.",prep:"없음(엘리베이터·횡단보도 같은 일상 공간)",
+  caption:"한국 와서 제일 먼저 배운 것 🛗 #블링원 #BLINGONE #한국인특징 #kpop"},
+ {id:7,title:"「표정 번역기」 — 한국어를 표정으로",tags:["말 없음","10초","1명씩","연결: 시리즈"],
+  goal:"서툰 한국어를 「배우는 중」 콘셉트로 바꿉니다. 자막에 뜬 한국어 한마디를 멤버가 표정만으로 번역합니다. 멤버마다 돌아가며 찍어 얼굴을 알립니다.",
+  cuts:[["0~2초","「헐」","입이 떡 벌어지는 표정","효과음: 휙"],
+        ["2~4초","「아 진짜?」","눈을 가늘게 뜨고 의심하는 표정","효과음: 휙"],
+        ["4~7초","「대박」","두 손을 볼에 대고 눈이 반짝","효과음: 반짝"],
+        ["7~10초","「잘했죠?」","잠깐 무표정으로 멈췄다가 활짝 웃으며 엄지척","자막: 「오늘의 한국어 완료」"]],
+  tip:"표정 하나에 2초. 표정이 바뀌는 순간에 컷을 붙이면 리듬이 삽니다. 다음 단어를 댓글로 받으면 시리즈가 이어집니다.",prep:"없음",
+  caption:"표정으로 배우는 한국어 😮 #블링원 #BLINGONE #한국어 #표정연기"},
+ {id:8,title:"「아이돌 현실 POV」 — 무대 3분, 대기 9시간",tags:["말 없음","10초","5명","연결: 무대 · 화장품"],
+  goal:"케이팝을 보는 사람이면 궁금해하는 아이돌의 뒷모습을 웃기게 보여줍니다. 그룹을 몰라도 「출근길 나」처럼 공감합니다.",
+  cuts:[["0~3초","대기","무대 의상을 입고 소파에 늘어진 다섯 명","자막: 「무대 3분」"],
+        ["3~6초","졸음","하나둘 옆 사람 어깨에 기대 졸기","자막: 「대기 9시간」 · 시계 소리"],
+        ["6~8초","문 열림","문이 열리는 순간 전원 벌떡","효과음: 띵"],
+        ["8~10초","아이돌 모드","완벽한 미소와 손하트","음원 하이라이트"]],
+  tip:"실제 대기 시간에 대기실이나 연습실에서 찍으면 됩니다. 다음 편 소재: 사전녹화 새벽 5시, 메이크업 받으며 졸기(블링원 화장품이 자연스럽게 보이게).",prep:"무대 의상(이미 있는 것)",
+  caption:"무대 3분을 위해 🫠 #블링원 #BLINGONE #아이돌일상 #kpop"},
+ {id:9,title:"「무대 전 1분 루틴」 — 클렌징부터 선크림까지",tags:["말 없음","15~20초","1명","연결: 화장품"],
+  goal:"블링원 화장품을 쓰는 순서대로 보여줍니다. 효능 설명 없이 소리와 손동작만으로 가고, 마지막에 무대 모습으로 마무리합니다.",
+  cuts:[["0~4초","클렌징","폼으로 거품을 내 세안","거품 소리"],
+        ["4~8초","토너 · 크림","토너를 손바닥으로 톡톡, 젤 크림 펴 바르기","톡톡 소리"],
+        ["8~12초","세럼 · 선크림","세럼 한 방울, 선크림으로 마무리","뚜껑 딸깍"],
+        ["12~15초","등장","무대 의상으로 돌아서 카메라를 봄","음원 시작"]],
+  tip:"거울 앞 고정 컷과 손 클로즈업 컷을 따로 찍어 붙입니다. 제품 이름은 자막으로만 넣고, 「피부가 좋아진다」 같은 효능 문구는 쓰지 않습니다.",prep:"블링원 화장품(이미 있는 것)",
+  caption:"무대 전 1분 🎀 #블링원 #BLINGONE #스킨케어루틴 #kbeauty"},
+ {id:10,title:"「손바닥 텔레포트」 — 연습복에서 무대 의상으로",tags:["말 없음","8~12초","2~5명","연결: 음원 · 무대"],
+  goal:"쇼츠에서 꾸준히 뜨는 전환 트렌드에 「Bubble Gum」 음원을 얹습니다. 연습복과 무대 의상의 대비로 멤버의 무대 모습을 알립니다.",
+  cuts:[["0~3초","연습복","연습실에서 몇 박자 춤","음원 시작"],
+        ["3~4초","손바닥","손바닥으로 렌즈를 완전히 가림","효과음: 휙"],
+        ["4~7초","무대 의상","같은 자리에서 무대 의상으로 포즈","비트에 맞춰 전환"],
+        ["7~10초","멤버 체인지","한 번 더 가리면 다른 멤버가 윙크","자막: #BubbleGum"]],
+  tip:"휴대폰은 삼각대에 고정하고 서는 자리를 테이프로 표시합니다. 손바닥이 렌즈를 완전히 덮어야 전환이 매끄럽습니다.",prep:"무대 의상(이미 있는 것)",
+  caption:"연습실 → 무대 ✨ #블링원 #BLINGONE #BubbleGum #transition"}
 ];
-const EN={1:"Korean Level 0",2:"Lip Relay",3:"Skincare ASMR",4:"The Last One",5:"Bubble Gum"};
+const EN={1:"Korean Level 0",2:"Lip Relay",3:"Skincare ASMR",4:"The Last One",5:"Bubble Gum",6:"Korean Habits",7:"Face Translator",8:"Idol Reality",9:"One-minute Routine",10:"Palm Teleport"};
 const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const sb=document.getElementById('sb'),sbin=sb.querySelector('.in');
 const cards=[...document.querySelectorAll('.fmt .ph video')];
 function openSB(id){
   const f=F.find(x=>x.id==id);
-  sbin.innerHTML=`<div class="top"><div><p class="mono"><b>0${f.id}</b>&nbsp;&nbsp;Sketchboard · ${f.id} / 5</p>
+  sbin.innerHTML=`<div class="top"><div><p class="mono"><b>${String(f.id).padStart(2,"0")}</b>&nbsp;&nbsp;Sketchboard · ${f.id} / 10</p>
     <h3>${EN[f.id]}<em>.</em></h3><p class="kt">${esc(f.title)}</p>
     <div class="tags mono">${f.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="goal">${esc(f.goal)}</p></div>
 </div>
