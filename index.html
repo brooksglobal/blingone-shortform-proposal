@@ -5,242 +5,341 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>블링원 숏폼 성장 제안</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
 <style>
+/* BLINGONE goods store grammar: stage black, thin condensed display, mono for every small label, one pink. */
 :root{
-  --bg:#fbf7f6; --surface:#ffffff; --ink:#1d1416; --muted:#6f6266; --line:#eadfe1;
-  --accent:#e0244b; --accent-soft:#fde7ec; --ok:#1f7a55; --ok-soft:#e3f3ec;
+  --ink:#0F0D10; --ink-2:#18151A; --line:rgba(237,232,226,.14);
+  --fg:#EDE8E2; --fg-2:#A39CA6; --fg-3:#6B646E;
+  --stage:#D8D5D2; --stage-ink:#1A171B; --pink:#F15D95;
+  --ghost:rgba(237,232,226,.09);
+  --disp:'Antonio','Noto Sans KR',Impact,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --kr:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+  --pad:clamp(16px,3.2vw,44px);
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#151012; --surface:#1f191b; --ink:#f4eced; --muted:#ab9ca0; --line:#3a2f32;
-  --accent:#ff5c7c; --accent-soft:#3b1a22; --ok:#5fd0a0; --ok-soft:#173329; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#151012; --surface:#1f191b; --ink:#f4eced; --muted:#ab9ca0; --line:#3a2f32;
-  --accent:#ff5c7c; --accent-soft:#3b1a22; --ok:#5fd0a0; --ok-soft:#173329; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:15.5px;line-height:1.75;
-  word-break:keep-all;overflow-wrap:break-word;margin:0}
-.wrap{max-width:960px;margin:0 auto;padding-block:48px 88px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{text-wrap:balance;line-height:1.3;margin:0}
-h1{font-size:clamp(30px,5.4vw,46px);font-weight:900;letter-spacing:-.02em}
-h2{font-size:clamp(22px,3.4vw,27px);font-weight:900}
-h3{font-size:17px;font-weight:700}
+html{background:var(--ink);scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--kr);font-size:15px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
 p{margin:0}
-.kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.cover{border-bottom:2px solid var(--ink);padding-bottom:28px;display:flex;flex-direction:column;gap:14px}
-.cover .lede{font-size:18px;max-width:40ch}
-.cover dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:8px 0 0;font-size:14px;color:var(--muted)}
-.cover dt{font-weight:700;color:var(--ink)} .cover dd{margin:0}
-section{margin-top:60px;display:flex;flex-direction:column;gap:18px}
-.sub{color:var(--muted);max-width:66ch}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
-.stat b{display:block;font-size:26px;font-weight:900;letter-spacing:-.02em}
-.stat span{color:var(--muted);font-size:13px}
-.stat.bad b{color:var(--accent)}
-.callout{background:var(--accent-soft);border-radius:14px;padding:16px 18px}
-.callout.ok{background:var(--ok-soft)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0;margin:0}
-.card img{display:block;width:100%;aspect-ratio:1225/627;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);cursor:zoom-in}
-.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
-.card .num{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent)}
-.card p{font-size:14px}
-.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;counter-reset:f}
-.formula div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;counter-increment:f}
-.formula div::before{content:counter(f,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:13px}
-.formula h3{margin:4px 0 6px;font-size:16px}
-.formula p{font-size:14px;color:var(--muted)}
-.sketches{display:grid;gap:14px}
-.golink{align-self:flex-start;display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;border-radius:99px;padding:10px 18px}
-.golink:hover{opacity:.9}
-.sk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;grid-template-columns:52px 1fr;gap:14px}
-.sk .no{font-size:34px;font-weight:900;color:var(--accent);line-height:1}
-.sk .meta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
-.sk ol{margin:6px 0 8px;padding-left:20px;font-size:14px}
-.sk p{font-size:14px;color:var(--muted)}
-.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:99px;padding:2px 8px;background:var(--line);color:var(--ink)}
-.tag.hi{background:var(--ok-soft);color:var(--ok)}
-.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.flow div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
-.flow b{font-size:13px;color:var(--accent);font-family:"IBM Plex Mono",monospace}
-.flow p{font-size:14px}
-.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:600px;font-size:14px}
-th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;color:var(--muted);font-weight:700;white-space:nowrap}
-tr:last-child td{border-bottom:0}
-ul.asks{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.terms div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
-.terms .big{font-size:28px;font-weight:900;letter-spacing:-.02em;color:var(--accent)}
-.terms p{font-size:14px}
-.closing{border-top:2px solid var(--ink);padding-top:28px;display:flex;flex-direction:column;gap:14px}
-.closing .msg{font-size:19px;font-weight:700;max-width:40ch}
-.contact{color:var(--muted);font-size:14px}
+::selection{background:var(--pink);color:var(--ink)}
+:focus-visible{outline:1px solid var(--pink);outline-offset:3px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--ink);z-index:60}
+
+.mono{font-family:var(--mono);font-size:11px;line-height:1.7;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2)}
+.mono b{color:var(--fg);font-weight:500}
+.disp{font-family:var(--disp);font-weight:200;text-transform:uppercase;line-height:.86;letter-spacing:-.005em;margin:0}
+.disp em{font-style:normal;color:var(--pink)}
+html{overflow-x:clip}
+.ghost{font-family:var(--disp);font-weight:100;color:transparent;-webkit-text-stroke:1px var(--ghost);line-height:.8;pointer-events:none;user-select:none;white-space:nowrap}
+.kr-h{font-family:var(--kr);font-weight:300;font-size:clamp(18px,2.1vw,24px);line-height:1.55;color:var(--fg);max-width:44ch}
+.kr-h .sub{display:block;color:var(--fg-2);font-size:.72em;margin-top:6px}
+.wrap{padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
+
+/* chrome */
+.nav{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:14px;mix-blend-mode:difference}
+.nav .brand img{height:18px;width:auto}
+.nav .chapter{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);text-align:center}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px;justify-content:flex-end}
+.nav li a{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg)}
+.nav li a:hover{color:var(--pink)}
+@media (max-width:860px){.nav{grid-template-columns:auto 1fr}.nav .chapter{text-align:right}.nav ul{display:none}}
+
+section{position:relative;overflow:hidden}
+.chap{display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--line);padding-top:14px}
+.chap .n{color:var(--fg)}
+.block{padding-block:clamp(88px,12vw,150px) 0;display:grid;gap:clamp(24px,3vw,40px)}
+.block h2{font-size:clamp(56px,9vw,150px)}
+.headrow{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+
+/* 00 intro */
+.intro{min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:3vw;align-items:end;
+  padding-block:calc(84px + env(safe-area-inset-top,0px)) calc(56px + env(safe-area-inset-bottom,0px))}
+.intro .ghost{position:absolute;left:-1vw;top:6vh;font-size:clamp(200px,36vw,620px);z-index:0}
+.intro .copy{position:relative;z-index:1;display:grid;gap:22px}
+.intro h1{font-size:clamp(84px,13vw,230px)}
+.intro .meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:1px solid var(--line);padding-top:14px}
+.intro .meta span{display:block;color:var(--fg);letter-spacing:0;text-transform:none;font-family:var(--kr);font-size:13.5px;margin-top:2px}
+.intro .panel{position:relative;z-index:1;align-self:stretch;min-height:56svh;background:#F1E6EA;overflow:hidden}
+.intro .panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.intro .panel .cnt{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--stage-ink)}
+@media (max-width:860px){
+  .intro{grid-template-columns:1fr;align-items:start}
+  .intro .panel{min-height:0;aspect-ratio:3/2;order:-1}
+  .intro .meta{grid-template-columns:1fr;gap:8px}
+}
+
+/* 01 now */
+.spec{margin:0;padding:0;border-top:1px solid var(--line)}
+.spec li{list-style:none;display:grid;grid-template-columns:minmax(90px,.7fr) minmax(0,1fr) minmax(0,1.6fr);gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.spec .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2)}
+.spec .v{font-family:var(--disp);font-weight:200;font-size:clamp(34px,4.4vw,64px);line-height:.9}
+.spec .v.pk{color:var(--pink)}
+.spec .d{color:var(--fg-2);font-size:14px}
+@media (max-width:640px){.spec li{grid-template-columns:1fr auto}.spec .d{grid-column:1/-1}}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.shot{margin:0;display:grid;gap:12px;min-width:0}
+.shot .ph{background:var(--stage);padding:10px;cursor:zoom-in}
+.shot .ph img{width:100%;aspect-ratio:1225/627;object-fit:cover;object-position:top}
+.shot figcaption{display:grid;gap:6px}
+.shot figcaption p:last-child{color:var(--fg-2);font-size:14px}
+@media (max-width:860px){.trio{grid-template-columns:1fr}}
+
+/* 02 cases */
+.track{display:flex;gap:clamp(12px,1.4vw,20px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;
+  margin-left:calc(-1 * max(var(--pad),env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(var(--pad),env(safe-area-inset-right,0px)));
+  padding-left:max(var(--pad),env(safe-area-inset-left,0px));padding-right:max(var(--pad),env(safe-area-inset-right,0px));scroll-padding-inline:max(var(--pad),env(safe-area-inset-left,0px))}
+.track::-webkit-scrollbar{display:none}
+.case{flex:none;width:clamp(260px,30vw,400px);scroll-snap-align:start;display:grid;gap:12px;align-content:start}
+.case .ph{position:relative;background:var(--stage);padding:10px 10px 46px;cursor:zoom-in}
+.case .ph img{width:100%;aspect-ratio:1225/627;object-fit:cover;object-position:top}
+.case .ph .num{position:absolute;left:12px;bottom:2px;font-family:var(--disp);font-weight:100;font-size:46px;line-height:1;color:var(--stage-ink)}
+.case .ph .stat{position:absolute;right:12px;bottom:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--stage-ink);text-transform:uppercase}
+.case h3{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--fg);margin:0}
+.case p{color:var(--fg-2);font-size:14px}
+.case .bar{height:3px;background:var(--pink)}
+.snav{display:flex;gap:10px;align-items:center}
+.sbtn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);font:400 18px/1 var(--mono);cursor:pointer;display:grid;place-items:center;transition:color .25s,border-color .25s}
+.sbtn:hover{color:var(--pink);border-color:var(--pink)}
+
+/* 03 formula */
+.rows{margin:0;padding:0;border-top:1px solid var(--line)}
+.rows li{list-style:none;display:grid;grid-template-columns:clamp(64px,9vw,140px) minmax(0,1fr) minmax(0,1.2fr);gap:clamp(12px,2vw,28px);align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.rows .n{font-family:var(--disp);font-weight:100;font-size:clamp(44px,6vw,96px);line-height:.85;color:var(--fg-3);transition:color .3s}
+.rows li:hover .n{color:var(--pink)}
+.rows h3{font-family:var(--kr);font-weight:500;font-size:clamp(17px,1.8vw,22px);margin:0}
+.rows p{color:var(--fg-2);font-size:14.5px}
+@media (max-width:640px){.rows li{grid-template-columns:56px 1fr}.rows p{grid-column:2}}
+.manifesto{border:1px solid var(--line);padding:clamp(20px,3vw,36px);display:grid;gap:14px}
+.manifesto .big{font-family:var(--kr);font-weight:300;font-size:clamp(19px,2.3vw,28px);line-height:1.6;color:var(--fg);max-width:46ch}
+.manifesto .big b{font-weight:500;color:var(--pink)}
+
+/* 04 formats */
+.fmts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.2vw,18px)}
+.fmt{display:grid;gap:12px;align-content:start;min-width:0}
+.fmt .ph{position:relative;aspect-ratio:9/14;background:var(--ink-2);overflow:hidden}
+.fmt .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.fmt:hover .ph img{transform:scale(1.04)}
+.fmt .ph .num{position:absolute;left:10px;top:4px;font-family:var(--disp);font-weight:100;font-size:56px;line-height:1;color:#fff;mix-blend-mode:difference}
+.fmt .ph .tg{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--ink);background:var(--fg);padding:2px 6px;text-transform:uppercase}
+.fmt h3{font-family:var(--kr);font-weight:500;font-size:15.5px;line-height:1.45;margin:0}
+.fmt p{color:var(--fg-2);font-size:13.5px}
+.fmt .sw{height:3px;background:var(--pink)}
+@media (max-width:1000px){.fmts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.fmts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cta{display:inline-flex;gap:14px;align-items:center;font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 0;border-bottom:1px solid var(--fg);color:var(--fg);transition:color .25s,border-color .25s}
+.cta:hover{color:var(--pink);border-color:var(--pink)}
+.cta .arr{transition:transform .3s}
+.cta:hover .arr{transform:translateX(6px)}
+
+/* 05 process */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.steps div{padding:18px 20px 22px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line)}
+.steps div:first-child{padding-left:0}
+.steps div:last-child{border-right:0}
+.steps h3{font-family:var(--disp);font-weight:200;font-size:clamp(34px,3.6vw,56px);line-height:.9;text-transform:uppercase;margin:0}
+.steps p{color:var(--fg-2);font-size:14px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}.steps div{border-right:0;border-bottom:1px solid var(--line);padding-left:0}}
+.weeks{margin:0;padding:0;border-top:1px solid var(--line)}
+.weeks li{list-style:none;display:grid;grid-template-columns:minmax(100px,.5fr) minmax(0,2fr) auto;gap:8px 14px;align-items:baseline;padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.weeks .w{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--fg)}
+.weeks .t{color:var(--fg-2);font-size:14px}
+.weeks .c{font-family:var(--disp);font-weight:200;font-size:30px;line-height:1}
+.weeks .bar{grid-column:1/-1;height:2px;background:rgba(237,232,226,.1)}
+.weeks .bar span{display:block;height:100%;background:var(--pink)}
+@media (max-width:640px){.weeks li{grid-template-columns:1fr auto}.weeks .t{grid-column:1/-1;grid-row:2}}
+
+/* 06 ask */
+.asks{margin:0;padding:0;border-top:1px solid var(--line)}
+.asks li{list-style:none;display:grid;grid-template-columns:minmax(110px,.5fr) minmax(0,2fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.asks .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--fg);text-transform:uppercase}
+.asks p{color:var(--fg-2);font-size:14.5px}
+@media (max-width:640px){.asks li{grid-template-columns:1fr;gap:4px}}
+
+/* 07 terms */
+.terms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
+.term{background:var(--ink-2);padding:clamp(16px,2vw,24px);display:grid;gap:10px;align-content:start;min-width:0}
+.term .v{font-family:var(--disp);font-weight:200;font-size:clamp(52px,6.4vw,104px);line-height:.85;text-transform:uppercase}
+.term .v.pk{color:var(--pink)}
+.term h3{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--fg);margin:0}
+.term p{color:var(--fg-2);font-size:14px}
+@media (max-width:1000px){.terms{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.terms{grid-template-columns:1fr}}
+.note{font-family:var(--kr);font-size:13px;color:var(--fg-3)}
+
+/* closing */
+.outro{min-height:90svh;display:grid;align-content:end;gap:28px;padding-block:120px calc(56px + env(safe-area-inset-bottom,0px))}
+.outro .ghost{position:absolute;right:-2vw;top:4vh;font-size:clamp(180px,30vw,520px)}
+.outro h2{font-size:clamp(72px,12vw,210px);position:relative}
+.outro .msg{font-family:var(--kr);font-weight:300;font-size:clamp(19px,2.2vw,27px);line-height:1.6;max-width:34ch;position:relative}
+.outro .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;position:relative}
+.outro .foot .mono.c{text-transform:none;letter-spacing:.04em}
+.heart{width:44px;height:auto;position:relative}
+
 dialog{border:0;padding:0;background:transparent;max-width:96vw}
-dialog img{max-width:96vw;max-height:90vh;border-radius:10px;display:block}
-dialog::backdrop{background:rgba(0,0,0,.75)}
-@media (max-width:520px){.sk{grid-template-columns:1fr}.sk .no{font-size:26px}}
+dialog img{max-width:96vw;max-height:90vh;display:block}
+dialog::backdrop{background:rgba(15,13,16,.9)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 
 </head>
 <body>
-<div class="wrap">
-  <header class="cover">
-    <div class="kicker">Proposal · BLINGONE Short-form · 2026-11-05</div>
-    <h1>블링원 숏폼 성장 제안</h1>
-    <p class="lede">말이 거의 필요 없는 숏폼으로, 블링원을 「다시 찾아보는 그룹」으로 만들겠습니다.</p>
-    <dl>
-      <dt>받는 곳</dt><dd>월드케이팝센터</dd>
-      <dt>제안</dt><dd>㈜아루가 · 브룩스글로벌</dd>
-      <dt>기간</dt><dd>파일럿 8주 · 숏폼 20편 · 기획 무상</dd>
-    </dl>
-  </header>
+<nav class="nav wrap">
+  <a class="brand" href="#top"><img src="brand/wordmark_white.png" alt="Blingone"></a>
+  <span class="chapter">Short-form Proposal</span>
+  <ul><li><a href="#now">01 Now</a></li><li><a href="#cases">02 Cases</a></li><li><a href="#formats">04 Formats</a></li><li><a href="#terms">07 Terms</a></li></ul>
+</nav>
 
-  <section>
-    <div><div class="kicker">01 · 지금</div><h2>채널은 있는데, 블링원만의 「포맷」이 없습니다</h2></div>
-    <div class="stats">
-      <div class="stat"><b>7.85만</b><span>틱톡 팔로워 · 좋아요 93.6만</span></div>
-      <div class="stat"><b>2.63만</b><span>인스타 팔로워 · 최근 릴스 조회 1천~1만</span></div>
-      <div class="stat"><b>1.3만</b><span>샤오홍슈 팔로워 · 노트 375</span></div>
-      <div class="stat bad"><b>27명</b><span>유튜브 구독자 · 쇼츠 0편</span></div>
+<section class="intro wrap" id="top">
+  <div class="ghost" aria-hidden="true">001</div>
+  <div class="copy">
+    <p class="mono"><b>00</b>&nbsp;&nbsp;Proposal · 2026.11.05</p>
+    <h1 class="disp">Look<br>Twice<em>.</em></h1>
+    <p class="kr-h">말이 거의 필요 없는 숏폼으로, 블링원을 「다시 찾아보는 그룹」으로 만들겠습니다.</p>
+    <div class="meta mono">
+      <div>To<span>월드케이팝센터</span></div>
+      <div>From<span>㈜아루가 · 브룩스글로벌</span></div>
+      <div>Pilot<span>8주 · 숏폼 20편 · 기획 무상</span></div>
     </div>
-    <div class="grid">
-      <figure class="card"><img src="img/r02.jpg" alt="블링원 틱톡 프로필"><div class="body"><h3>반응할 사람은 있습니다</h3><p>틱톡은 팔로워 대비 좋아요가 높습니다. 다만 다시 찾아볼 시리즈가 없습니다.</p></div></figure>
-      <figure class="card"><img src="img/r05.jpg" alt="샤오홍슈 블링원 검색 결과"><div class="body"><h3>「아직 활동하나요?」</h3><p>샤오홍슈에서 블링원을 검색하면 연관 검색어에 「해체 이유」가 뜹니다. 꾸준한 업로드가 가장 좋은 답입니다.</p></div></figure>
-      <figure class="card"><img src="img/r01.jpg" alt="블링원 유튜브 채널"><div class="body"><h3>가장 큰 빈칸, 유튜브 쇼츠</h3><p>올해 중소 걸그룹이 뜬 경로가 바로 유튜브 쇼츠였습니다. 블링원 채널에는 아직 쇼츠가 없습니다.</p></div></figure>
-    </div>
-  </section>
+  </div>
+  <div class="panel"><img src="brand/hero_group.jpg" alt="블링원 멤버 5인과 블링원 스킨케어"><div class="cnt"><span>05 / 05</span><span>Blingone</span></div></div>
+</section>
 
-  <section>
-    <div><div class="kicker">02 · 사례</div><h2>말 없이도, 작게 시작해도 뜹니다</h2>
-    <p class="sub">반응이 없다가 숏폼 하나로 돌파했거나, 말 없이 표정·손·소리만으로 큰 사례입니다. 이미지를 누르면 크게 보입니다.</p></div>
-    <div class="grid">
-      <figure class="card"><img src="img/r10.jpg" alt="원이 유튜브 채널"><div class="body">
-        <div class="num">2026.02 개설 → 구독 240만</div><h3>리센느 원이 채널</h3>
-        <p>「거제 야호」 한마디가 밈이 됐고, 2024년 곡이 멜론 차트로 역주행했습니다.</p></div></figure>
-      <figure class="card"><img src="img/r11.jpg" alt="원이 거제 1편 쇼츠"><div class="body">
-        <div class="num">1,616만 회 · KGB 협찬</div><h3>뜨면 광고가 붙습니다</h3>
-        <p>이후 스팸 에디션, 할리스 모델, 거제시 홍보대사까지 이어졌습니다.</p></div></figure>
-      <figure class="card"><img src="img/r12.jpg" alt="CUTIE STREET 뮤직비디오"><div class="body">
-        <div class="num">MV 8,375만 · 한국어판 356만</div><h3>CUTIE STREET</h3>
-        <p>「귀여우면 안 되나요?」 한 문장과 얼굴을 감싸는 손 안무로 틱톡 1위. 서툰 한국어 버전도 반응이 좋았습니다.</p></div></figure>
-      <figure class="card"><img src="img/r20.jpg" alt="Junya 유튜브 채널"><div class="body">
-        <div class="num">구독 3,890만</div><h3>Junya</h3>
-        <p>대사 없이 표정과 소품만으로 웃기는 상황극. 국적과 상관없이 봅니다.</p></div></figure>
-      <figure class="card"><img src="img/r22.jpg" alt="Bayashi 유튜브 채널"><div class="body">
-        <div class="num">구독 3,750만</div><h3>Bayashi</h3>
-        <p>손 클로즈업과 소리만으로 완성하는 영상. 화장품의 펌핑·뚜껑·텍스처 소리로 그대로 옮길 수 있습니다.</p></div></figure>
-      <figure class="card"><img src="img/r50.jpg" alt="TIRTIR 쿠션 쇼츠"><div class="body">
-        <div class="num">셰이드 시연 쇼츠 2,302만</div><h3>TIRTIR 쿠션</h3>
-        <p>설명 없이 「컬러를 나란히 보여주는」 시연만으로 퍼졌습니다.</p></div></figure>
-    </div>
-  </section>
+<section class="wrap" id="now"><div class="block">
+  <p class="chap mono"><span class="n">01</span> Now — 지금</p>
+  <h2 class="disp">No format<br>yet<em>.</em></h2>
+  <p class="kr-h">채널은 있는데, 블링원만의 「포맷」이 없습니다.</p>
+  <ul class="spec">
+    <li><span class="k">TikTok</span><span class="v">78.5K</span><span class="d">팔로워 · 좋아요 93.6만. 반응할 사람은 있지만 다시 찾아볼 시리즈가 없습니다.</span></li>
+    <li><span class="k">Instagram</span><span class="v">26.3K</span><span class="d">팔로워 · 최근 릴스 조회 1천~1만. 게시물 477개, 포맷이 매번 다릅니다.</span></li>
+    <li><span class="k">Xiaohongshu</span><span class="v">13K</span><span class="d">팔로워 · 노트 375. 연관 검색어에 「해체 이유」가 뜹니다.</span></li>
+    <li><span class="k">YouTube</span><span class="v pk">27</span><span class="d">구독자 · 쇼츠 0편. 올해 중소 걸그룹이 뜬 경로가 바로 유튜브 쇼츠였습니다.</span></li>
+  </ul>
+  <div class="trio">
+    <figure class="shot"><div class="ph"><img src="img/r02.jpg" alt="블링원 틱톡 프로필"></div><figcaption><p class="mono"><b>A</b>&nbsp; TikTok</p><p>팔로워 대비 좋아요가 높습니다. 반응은 이미 있습니다.</p></figcaption></figure>
+    <figure class="shot"><div class="ph"><img src="img/r05.jpg" alt="샤오홍슈 블링원 검색 결과"></div><figcaption><p class="mono"><b>B</b>&nbsp; Xiaohongshu</p><p>「아직 활동하나요?」 — 꾸준한 업로드가 가장 좋은 답입니다.</p></figcaption></figure>
+    <figure class="shot"><div class="ph"><img src="img/r01.jpg" alt="블링원 유튜브 채널"></div><figcaption><p class="mono"><b>C</b>&nbsp; YouTube</p><p>가장 큰 빈칸. 쇼츠가 아직 한 편도 없습니다.</p></figcaption></figure>
+  </div>
+</div></section>
 
-  <section>
-    <div><div class="kicker">03 · 공통점</div><h2>뜬 사람들의 공통 공식 다섯 가지</h2></div>
-    <div class="formula">
-      <div><h3>한 문장 캐릭터</h3><p>한마디나 동작 하나로 기억됩니다.</p></div>
-      <div><h3>서툰 말 = 웃음</h3><p>말을 잘 못하는 상황 자체가 포맷이 됩니다.</p></div>
-      <div><h3>따라 할 도구</h3><p>쉬운 손 안무와 빠른 음원. 팬이 찍은 영상이 곧 홍보입니다.</p></div>
-      <div><h3>시리즈와 세계관</h3><p>같은 배경과 캐릭터가 다음 편을 부릅니다.</p></div>
-      <div><h3>제품은 소품과 소리로</h3><p>설명 대신 보여주면 광고처럼 보이지 않습니다.</p></div>
-    </div>
-    <div class="callout ok"><p><b>블링원 방향:</b> 말 대신 <b>표정·손·소리</b>로 웃기고, 서툰 한국어는 숨기지 않고 <b>매력 포인트</b>로 씁니다. 굿즈와 블링원 화장품은 매회 <b>소품</b>으로 등장시켜, 블링원을 볼 때마다 제품도 함께 보이게 합니다. 유튜브 쇼츠와 틱톡을 중심으로, 인스타그램과 샤오홍슈에도 같은 영상을 올립니다.</p></div>
-  </section>
+<section class="wrap" id="cases"><div class="block">
+  <p class="chap mono"><span class="n">02</span> Cases — 사례</p>
+  <div class="headrow">
+    <h2 class="disp">Silent.<br>Still viral<em>.</em></h2>
+    <div class="snav"><button class="sbtn" data-dir="-1" aria-label="이전 사례">←</button><button class="sbtn" data-dir="1" aria-label="다음 사례">→</button></div>
+  </div>
+  <p class="kr-h">말 없이도, 작게 시작해도 뜹니다.</p>
+  <div class="track" id="track">
+    <article class="case"><div class="ph"><img src="img/r10.jpg" alt="원이 유튜브 채널"><span class="num">01</span><span class="stat">2.4M subs</span></div><h3>리센느 원이 채널</h3><p>2026년 2월 개설, 구독 240만. 「거제 야호」 한마디가 밈이 됐고 2024년 곡이 역주행했습니다.</p><div class="bar"></div></article>
+    <article class="case"><div class="ph"><img src="img/r11.jpg" alt="원이 거제 1편 쇼츠"><span class="num">02</span><span class="stat">16.16M views</span></div><h3>뜨면 광고가 붙는다</h3><p>「거제 1편」에 KGB 협찬. 이후 스팸 에디션, 할리스 모델, 거제시 홍보대사로 이어졌습니다.</p><div class="bar"></div></article>
+    <article class="case"><div class="ph"><img src="img/r12.jpg" alt="CUTIE STREET 뮤직비디오"><span class="num">03</span><span class="stat">83.75M views</span></div><h3>CUTIE STREET</h3><p>한 문장 콘셉트와 얼굴을 감싸는 손 안무로 틱톡 1위. 서툰 한국어 버전도 반응이 좋았습니다.</p><div class="bar"></div></article>
+    <article class="case"><div class="ph"><img src="img/r20.jpg" alt="Junya 유튜브 채널"><span class="num">04</span><span class="stat">38.9M subs</span></div><h3>Junya</h3><p>대사 없이 표정과 소품만으로 웃기는 상황극. 국적과 상관없이 봅니다.</p><div class="bar"></div></article>
+    <article class="case"><div class="ph"><img src="img/r22.jpg" alt="Bayashi 유튜브 채널"><span class="num">05</span><span class="stat">37.5M subs</span></div><h3>Bayashi</h3><p>손 클로즈업과 소리만으로 완성. 화장품의 펌핑·뚜껑·텍스처 소리로 그대로 옮길 수 있습니다.</p><div class="bar"></div></article>
+    <article class="case"><div class="ph"><img src="img/r50.jpg" alt="TIRTIR 쿠션 쇼츠"><span class="num">06</span><span class="stat">23.02M views</span></div><h3>TIRTIR 쿠션</h3><p>설명 없이 「컬러를 나란히 보여주는」 시연만으로 퍼졌습니다.</p><div class="bar"></div></article>
+  </div>
+</div></section>
 
-  <section>
-    <div><div class="kicker">04 · 예시</div><h2>먼저 해볼 다섯 가지 포맷</h2>
-    <p class="sub">15~30초 세로 영상 기준입니다. 20편은 이 다섯 포맷을 돌려 가며 만듭니다.</p></div>
-    <a class="golink" href="sketchboard/">스케치보드 보기 — 컷 구성과 AI 견본 영상 →</a>
-    <div class="sketches">
-      <article class="sk"><div class="no">1</div><div>
-        <h3>「한국어 0단계」 — 엉뚱하게 답하기</h3>
-        <div class="meta"><span class="tag">대사 최소 · 자막</span><span class="tag">연결: 굿즈</span></div>
-        <ol><li>화면 밖 목소리: 「점심 뭐 먹었어요?」</li><li>멤버가 3초 고민한 뒤 굿즈 키링을 들어 보이며 「네! 맛있어요!」</li><li>정적. 다른 멤버들이 단체로 고개를 돌림. 자막 「오늘의 한국어: 실패」</li></ol>
-        <p>한국어를 배우는 해외 팬은 공감해서, 한국 시청자는 귀여워서 웃습니다.</p>
-      </div></article>
-      <article class="sk"><div class="no">2</div><div>
-        <h3>「립 한 번 = 멤버 체인지」 — 다섯 컬러 릴레이</h3>
-        <div class="meta"><span class="tag hi">말 없음</span><span class="tag">연결: 화장품</span></div>
-        <ol><li>멤버 A가 립을 바르고 카메라 렌즈에 「쪽」</li><li>화면이 가려졌다 열리면 멤버 B가 다른 컬러로 같은 동작</li><li>다섯 명이 끝나면 다섯 컬러를 손등에 나란히, 로고 컷</li></ol>
-        <p>제품 컬러와 멤버 얼굴을 한 번에 보여줍니다.</p>
-      </div></article>
-      <article class="sk"><div class="no">3</div><div>
-        <h3>「블링원 스킨케어 ASMR」 — 다섯 손 릴레이</h3>
-        <div class="meta"><span class="tag hi">말 없음</span><span class="tag">연결: 화장품</span></div>
-        <ol><li>책상 위 제품, 손만 보이는 탑뷰</li><li>멤버 손이 한 명씩 들어와 뚜껑 열기 → 펌핑 → 손등에 텍스처</li><li>마지막에 다섯 손이 모여 하트, 로고 컷</li></ol>
-        <p>얼굴이 나오지 않아도 되어 스케줄이 바쁠 때도 찍을 수 있습니다.</p>
-      </div></article>
-      <article class="sk"><div class="no">4</div><div>
-        <h3>「5초 무언 상황극」 — 마지막 하나 쟁탈전</h3>
-        <div class="meta"><span class="tag hi">말 없음</span><span class="tag">연결: 굿즈샵</span></div>
-        <ol><li>연습실 테이블에 굿즈가 딱 하나</li><li>다섯 명이 동시에 손을 뻗음 → 슬로모션 → 엉뚱한 멤버가 가져감</li><li>멤버별 시그니처 제스처로 마무리. 자막 「굿즈샵에서는 하나씩 드려요」</li></ol>
-        <p>반복해서 찍기 좋은 단골 포맷입니다. 멤버마다 고정 제스처를 정해 캐릭터를 쌓습니다.</p>
-      </div></article>
-      <article class="sk"><div class="no">5</div><div>
-        <h3>「Bubble Gum」 풍선껌 손 안무 챌린지</h3>
-        <div class="meta"><span class="tag hi">말 없음</span><span class="tag">연결: 음원 · 굿즈</span></div>
-        <ol><li>후렴 8초를 앉아서도 되는 손 안무로 새로 짭니다(풍선 부는 손 → 팡)</li><li>빠른 버전 음원을 함께 공개</li><li>「팡」 하는 순간 굿즈가 튀어나오는 버전도 함께</li></ol>
-        <p>팬과 일반인이 따라 하기 쉬운 도구를 먼저 건넵니다.</p>
-      </div></article>
-    </div>
-  </section>
+<section class="wrap" id="formula"><div class="block">
+  <p class="chap mono"><span class="n">03</span> Formula — 공통점</p>
+  <h2 class="disp">Five<br>rules<em>.</em></h2>
+  <ul class="rows">
+    <li><span class="n">01</span><h3>한 문장 캐릭터</h3><p>한마디나 동작 하나로 기억됩니다.</p></li>
+    <li><span class="n">02</span><h3>서툰 말 = 웃음</h3><p>말을 잘 못하는 상황 자체가 포맷이 됩니다.</p></li>
+    <li><span class="n">03</span><h3>따라 할 도구</h3><p>쉬운 손 안무와 빠른 음원. 팬이 찍은 영상이 곧 홍보입니다.</p></li>
+    <li><span class="n">04</span><h3>시리즈와 세계관</h3><p>같은 배경과 캐릭터가 다음 편을 부릅니다.</p></li>
+    <li><span class="n">05</span><h3>제품은 소품과 소리로</h3><p>설명 대신 보여주면 광고처럼 보이지 않습니다.</p></li>
+  </ul>
+  <div class="manifesto">
+    <p class="mono"><b>Direction</b>&nbsp; 블링원 방향</p>
+    <p class="big">말 대신 <b>표정·손·소리</b>로 웃기고, 서툰 한국어는 숨기지 않고 <b>매력</b>으로 씁니다. 굿즈와 블링원 화장품은 매회 <b>소품</b>으로 등장시켜, 블링원을 볼 때마다 제품도 함께 보이게 합니다.</p>
+    <p class="mono">YouTube Shorts · TikTok 중심 / Instagram · Xiaohongshu 동시 업로드</p>
+  </div>
+</div></section>
 
-  <section>
-    <div><div class="kicker">05 · 진행 방식</div><h2>기획은 저희가, 촬영은 멤버들이</h2>
-    <p class="sub">멤버들은 정해진 영상을 그대로 따라 찍기만 하면 됩니다. 말이 거의 없는 포맷이라 한국어 부담이 적고, 휴대폰과 이미 있는 블링원 굿즈·화장품만으로 찍을 수 있게 기획합니다.</p></div>
-    <div class="flow">
-      <div><b>STEP 1</b><h3>기획</h3><p>아루가·브룩스글로벌이 편마다 스케치보드(컷·동작·자막)를 만듭니다.</p></div>
-      <div><b>STEP 2</b><h3>레퍼런스 영상</h3><p>AI로 「이렇게 찍으면 된다」는 견본 영상을 만들어 함께 드립니다.</p></div>
-      <div><b>STEP 3</b><h3>촬영</h3><p>멤버들이 견본을 보고 휴대폰으로 따라 찍습니다. 한 편에 30분 안팎을 목표로 합니다.</p></div>
-      <div><b>STEP 4</b><h3>업로드·점검</h3><p>공식 채널에 올리고, 매주 조회 수와 반응을 함께 봅니다.</p></div>
-    </div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>기간</th><th>할 일</th><th>편수</th></tr></thead>
-      <tbody>
-        <tr><td>1~2주</td><td>멤버별 시그니처 제스처 정하기, 유튜브 쇼츠 시작, 포맷 1·4로 첫 반응 보기</td><td>5편</td></tr>
-        <tr><td>3~4주</td><td>반응 좋은 포맷 늘리기, 화장품 포맷(2·3) 시작</td><td>5편</td></tr>
-        <tr><td>5~6주</td><td>「Bubble Gum」 챌린지 공개, 시리즈 이어 가기</td><td>5편</td></tr>
-        <tr><td>7~8주</td><td>마무리 5편, 8주 결과 정리 및 다음 단계 협의</td><td>5편</td></tr>
-      </tbody>
-    </table></div>
-  </section>
+<section class="wrap" id="formats"><div class="block">
+  <p class="chap mono"><span class="n">04</span> Formats — 예시</p>
+  <div class="headrow">
+    <h2 class="disp">Five<br>formats<em>.</em></h2>
+    <a class="cta" href="sketchboard/">Open sketchboard <span class="arr">→</span></a>
+  </div>
+  <p class="kr-h">15~30초 세로 영상. 20편은 이 다섯 포맷을 돌려 가며 만듭니다.<span class="sub">컷 구성과 멤버 프로필로 만든 AI 견본 영상은 스케치보드에 있습니다.</span></p>
+  <div class="fmts">
+    <article class="fmt"><div class="ph"><img src="sk/s1.jpg" alt="한국어 0단계 견본 장면"><span class="num">1</span><span class="tg">Goods</span></div><div class="sw"></div><h3>「한국어 0단계」<br>엉뚱하게 답하기</h3><p>질문에 3초 고민 → 굿즈를 들고 자신 있게 엉뚱한 답. 뒤 멤버들의 무표정.</p></article>
+    <article class="fmt"><div class="ph"><img src="sk/s2.jpg" alt="립 릴레이 견본 장면"><span class="num">2</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「립 한 번 = 멤버 체인지」<br>다섯 컬러 릴레이</h3><p>립을 바르고 렌즈에 「쪽」 → 다음 멤버, 다른 컬러. 컬러와 텍스처만 보여줍니다.</p></article>
+    <article class="fmt"><div class="ph"><img src="sk/s3.jpg" alt="스킨케어 ASMR 견본 장면"><span class="num">3</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「블링원 스킨케어 ASMR」<br>다섯 손 릴레이</h3><p>손만 나오는 탑뷰. 뚜껑·펌핑·텍스처 소리. 스케줄이 바빠도 찍을 수 있습니다.</p></article>
+    <article class="fmt"><div class="ph"><img src="sk/s4.jpg" alt="마지막 하나 쟁탈전 견본 장면"><span class="num">4</span><span class="tg">Goods Shop</span></div><div class="sw"></div><h3>「5초 무언 상황극」<br>마지막 하나 쟁탈전</h3><p>굿즈 하나에 다섯 명이 동시에 손 → 슬로모션 → 반전. 「굿즈샵에서는 하나씩 드려요」.</p></article>
+    <article class="fmt"><div class="ph"><img src="sk/s5.jpg" alt="Bubble Gum 챌린지 견본 장면"><span class="num">5</span><span class="tg">Music</span></div><div class="sw"></div><h3>「Bubble Gum」<br>풍선껌 손 안무 챌린지</h3><p>앉아서도 되는 8초 손 안무. 풍선 부는 손 → 「팡」. 팬이 따라 하기 쉬운 도구.</p></article>
+  </div>
+</div></section>
 
-  <section>
-    <div><div class="kicker">06 · 협조 요청</div><h2>월드케이팝센터에 부탁드리는 것</h2></div>
-    <ul class="asks">
-      <li><b>촬영 시간:</b> 주 2~3편을 찍을 수 있도록 멤버 일정을 잡아 주세요. 묶어서 한 번에 찍어도 됩니다.</li>
-      <li><b>업로드:</b> 공식 채널(유튜브·틱톡·인스타그램·샤오홍슈)에 기획한 순서대로 올려 주세요.</li>
-      <li><b>데이터 공유:</b> 매주 각 영상의 조회 수와 반응 화면을 공유해 주세요.</li>
-      <li><b>소품:</b> 별도 소품이 필요 없는 포맷을 우선합니다. 꼭 구매가 필요한 소품이 생기면 미리 협의한 뒤에만 구매합니다.</li>
-    </ul>
-  </section>
+<section class="wrap" id="process"><div class="block">
+  <p class="chap mono"><span class="n">05</span> Process — 진행 방식</p>
+  <h2 class="disp">We plan.<br>You shoot<em>.</em></h2>
+  <p class="kr-h">멤버들은 정해진 영상을 그대로 따라 찍기만 하면 됩니다.<span class="sub">말이 거의 없는 포맷이라 한국어 부담이 적고, 휴대폰과 이미 있는 굿즈·화장품만으로 찍습니다.</span></p>
+  <div class="steps">
+    <div><p class="mono">Step 01</p><h3>Plan</h3><p>편마다 스케치보드(컷·동작·자막)를 만듭니다.</p></div>
+    <div><p class="mono">Step 02</p><h3>Sample</h3><p>AI로 「이렇게 찍으면 된다」는 견본 영상을 함께 드립니다.</p></div>
+    <div><p class="mono">Step 03</p><h3>Shoot</h3><p>견본을 보고 휴대폰으로 따라 찍습니다. 한 편 30분 안팎.</p></div>
+    <div><p class="mono">Step 04</p><h3>Post</h3><p>공식 채널에 올리고, 매주 조회 수와 반응을 함께 봅니다.</p></div>
+  </div>
+  <ul class="weeks">
+    <li><span class="w">WEEK 01–02</span><span class="t">멤버별 시그니처 제스처 정하기 · 유튜브 쇼츠 시작 · 포맷 1·4로 첫 반응 보기</span><span class="c">05</span><span class="bar"><span style="width:25%"></span></span></li>
+    <li><span class="w">WEEK 03–04</span><span class="t">반응 좋은 포맷 늘리기 · 화장품 포맷(2·3) 시작</span><span class="c">10</span><span class="bar"><span style="width:50%"></span></span></li>
+    <li><span class="w">WEEK 05–06</span><span class="t">「Bubble Gum」 챌린지 공개 · 시리즈 이어 가기</span><span class="c">15</span><span class="bar"><span style="width:75%"></span></span></li>
+    <li><span class="w">WEEK 07–08</span><span class="t">마무리 5편 · 8주 결과 정리 및 다음 단계 협의</span><span class="c">20</span><span class="bar"><span style="width:100%"></span></span></li>
+  </ul>
+</div></section>
 
-  <section>
-    <div><div class="kicker">07 · 제안 조건</div><h2>한 편이라도 뜨면, 함께 키워 가겠습니다</h2></div>
-    <div class="terms">
-      <div><span class="big">무상</span><h3>파일럿 8주</h3><p>20편의 기획(스케치보드)과 AI 견본 영상 제작 비용은 받지 않습니다.</p></div>
-      <div><span class="big">10만 회</span><h3>성과 기준</h3><p>파일럿 20편 중 한 편이라도 쇼츠 조회 10만 회를 넘기면 성과로 봅니다.</p></div>
-      <div><span class="big">운영 일임</span><h3>다음 단계</h3><p>성과가 나오면 블링원 SNS 채널의 콘텐츠 기획과 운영을 아루가·브룩스글로벌에 맡겨 주세요.</p></div>
-      <div><span class="big">30%</span><h3>정당한 보상</h3><p>운영을 맡은 뒤 아루가·브룩스글로벌이 연결한 광고·협찬 수익의 30%를 받습니다.</p></div>
-    </div>
-    <p class="sub">세부 정산 방식과 운영 기간은 성과가 나온 뒤 별도 계약으로 정합니다.</p>
-  </section>
+<section class="wrap" id="ask"><div class="block">
+  <p class="chap mono"><span class="n">06</span> Ask — 협조 요청</p>
+  <h2 class="disp">What we<br>need<em>.</em></h2>
+  <ul class="asks">
+    <li><span class="k">Schedule</span><p>주 2~3편을 찍을 수 있도록 멤버 일정을 잡아 주세요. 묶어서 한 번에 찍어도 됩니다.</p></li>
+    <li><span class="k">Upload</span><p>공식 채널(유튜브·틱톡·인스타그램·샤오홍슈)에 기획한 순서대로 올려 주세요.</p></li>
+    <li><span class="k">Data</span><p>매주 각 영상의 조회 수와 반응 화면을 공유해 주세요.</p></li>
+    <li><span class="k">Props</span><p>별도 소품이 필요 없는 포맷을 우선합니다. 꼭 구매가 필요한 소품은 미리 협의한 뒤에만 구매합니다.</p></li>
+  </ul>
+</div></section>
 
-  <section class="closing">
-    <p class="msg">블링원이 잘되어야 아루가와 저희도 잘됩니다. 처음에 한 마음 한 뜻으로 잘해 보자고 한 만큼, 긍정적으로 검토해 주시면 감사하겠습니다.</p>
-    <p class="contact">브룩스글로벌 김현우 · 010-6347-1209 · brooksservices.kim@brooksglobal.co.kr</p>
-  </section>
-</div>
+<section class="wrap" id="terms"><div class="block">
+  <p class="chap mono"><span class="n">07</span> Terms — 제안 조건</p>
+  <h2 class="disp">One hit<br>is enough<em>.</em></h2>
+  <p class="kr-h">한 편이라도 뜨면, 함께 키워 가겠습니다.</p>
+  <div class="terms">
+    <div class="term"><span class="v">Free</span><h3>Pilot · 8 weeks</h3><p>20편의 기획(스케치보드)과 AI 견본 영상 제작 비용은 받지 않습니다.</p></div>
+    <div class="term"><span class="v">100K</span><h3>Threshold</h3><p>파일럿 20편 중 한 편이라도 쇼츠 조회 10만 회를 넘기면 성과로 봅니다.</p></div>
+    <div class="term"><span class="v">SNS</span><h3>Next step</h3><p>성과가 나오면 블링원 SNS 채널의 콘텐츠 기획과 운영을 아루가·브룩스글로벌에 맡겨 주세요.</p></div>
+    <div class="term"><span class="v pk">30%</span><h3>Fair share</h3><p>운영을 맡은 뒤 아루가·브룩스글로벌이 연결한 광고·협찬 수익의 30%를 받습니다.</p></div>
+  </div>
+  <p class="note">세부 정산 방식과 운영 기간은 성과가 나온 뒤 별도 계약으로 정합니다.</p>
+</div></section>
+
+<section class="outro wrap">
+  <div class="ghost" aria-hidden="true">ONE</div>
+  <img class="heart" src="brand/heart_pink.png" alt="">
+  <h2 class="disp">One team<em>.</em></h2>
+  <p class="msg">블링원이 잘되어야 아루가와 저희도 잘됩니다. 처음에 한 마음 한 뜻으로 잘해 보자고 한 만큼, 긍정적으로 검토해 주시면 감사하겠습니다.</p>
+  <div class="foot">
+    <p class="mono c">브룩스글로벌 김현우 · 010-6347-1209 · brooksservices.kim@brooksglobal.co.kr</p>
+    <p class="mono">Seoul — Blingone Short-form · 2026</p>
+  </div>
+</section>
 
 <dialog id="zoom"><img alt=""></dialog>
 <script>
 const d=document.getElementById('zoom'),im=d.querySelector('img');
-document.querySelectorAll('.card img').forEach(i=>i.addEventListener('click',()=>{im.src=i.src;im.alt=i.alt;d.showModal()}));
+document.querySelectorAll('.shot .ph img,.case .ph img').forEach(i=>i.parentElement.addEventListener('click',()=>{im.src=i.src;im.alt=i.alt;d.showModal()}));
 d.addEventListener('click',()=>d.close());
+const tr=document.getElementById('track');
+document.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{
+  const c=tr.querySelector('.case');tr.scrollBy({left:(c.offsetWidth+16)*+b.dataset.dir,behavior:'smooth'});
+}));
 </script>
 
 </body>
