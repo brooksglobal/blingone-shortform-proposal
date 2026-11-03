@@ -137,6 +137,44 @@ section{position:relative;overflow:hidden}
   .fmt:last-child:nth-child(odd){grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(10px,1.2vw,18px)}
   .fmt:last-child:nth-child(odd) .ph{grid-row:1/span 4}
   .fmt:last-child:nth-child(odd)>:not(.ph){grid-column:2}}
+.fmt .ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--ink-2)}
+.fmt .ph .num,.fmt .ph .tg{z-index:1}
+.sbv{justify-self:start;display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg);background:none;border:0;border-bottom:1px solid var(--fg);padding:10px 0 6px;cursor:pointer;transition:color .25s,border-color .25s}
+.sbv:hover{color:var(--pink);border-color:var(--pink)}
+.sbv .arr{transition:transform .3s}.sbv:hover .arr{transform:translateX(5px)}
+/* sketchboard popup */
+#sb{width:min(1120px,94vw);max-width:94vw;max-height:92vh;background:var(--ink);color:var(--fg);border:1px solid var(--line);overflow:auto;overscroll-behavior:contain}
+#sb .in{display:grid;gap:22px;padding:clamp(18px,3vw,36px)}
+#sb .top{border-bottom:1px solid var(--line);padding:0 52px 16px 0}
+#sb h3{font-family:var(--disp);font-weight:200;text-transform:uppercase;font-size:clamp(40px,5.4vw,76px);line-height:.88;margin:6px 0 10px}
+#sb h3 em{font-style:normal;color:var(--pink)}
+#sb .kt{font-size:16px;font-weight:500}
+#sb .goal{color:var(--fg-2);font-size:14px;max-width:60ch;margin-top:4px}
+#sb .x{position:sticky;top:12px;z-index:3;display:block;margin:12px 12px -56px auto;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--ink);color:var(--fg);font-size:20px;line-height:1;cursor:pointer}
+#sb .x:hover{border-color:var(--pink);color:var(--pink)}
+#sb .tags{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px}
+#sb .tags span:first-child{color:var(--pink)}
+#sb .bd{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(16px,2.4vw,28px);align-items:start}
+#sb .vid{background:var(--stage);padding:8px;display:grid;gap:6px}
+#sb .vid video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+#sb .vid .mono{color:#3a353c}
+#sb .frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#sb .frame{display:grid;gap:8px;align-content:start;min-width:0}
+#sb .frame img{width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--stage);padding:5px}
+#sb .frame .t{display:grid;gap:3px;border-top:1px solid var(--line);padding-top:8px}
+#sb .frame .act{font-size:14px;font-weight:500}
+#sb .frame .do{font-size:13px}
+#sb .frame .sub{font-size:12px;color:var(--fg-2)}
+#sb .notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:20px}
+#sb .notes>div{border-top:1px solid var(--line);padding:10px 16px 0 0;display:grid;gap:5px;align-content:start;font-size:13px;color:var(--fg-2);min-width:0}
+#sb .notes>div+div{padding-left:16px;border-left:1px solid var(--line)}
+#sb .cap{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--ink-2);padding:7px 9px;user-select:all;overflow-wrap:anywhere}
+@media (max-width:760px){
+  #sb{width:100vw;max-width:100vw;height:100%;max-height:100%;border:0}
+  #sb .bd{grid-template-columns:1fr}#sb .vid{max-width:300px}
+  #sb .frames{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #sb .notes{grid-template-columns:1fr}#sb .notes>div+div{padding-left:0;border-left:0}#sb .notes>div{padding-bottom:10px}}
 .cta{display:inline-flex;gap:14px;align-items:center;font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
   padding:14px 0;border-bottom:1px solid var(--fg);color:var(--fg);transition:color .25s,border-color .25s}
 .cta:hover{color:var(--pink);border-color:var(--pink)}
@@ -274,13 +312,13 @@ dialog::backdrop{background:rgba(15,13,16,.9)}
     <h2 class="disp">Five<br>formats<em>.</em></h2>
     <a class="cta" href="sketchboard/">Open sketchboard <span class="arr">→</span></a>
   </div>
-  <p class="kr-h">15~30초 세로 영상. 20편은 이 다섯 포맷을 돌려 가며 만듭니다.<span class="sub">컷 구성과 멤버 프로필로 만든 AI 견본 영상은 스케치보드에 있습니다.</span></p>
+  <p class="kr-h">15~30초 세로 영상. 20편은 이 다섯 포맷을 돌려 가며 만듭니다.<span class="sub">카드의 영상은 멤버 프로필로 만든 AI 견본입니다. 「View sketchboard」를 누르면 컷 구성과 촬영 팁이 열립니다.</span></p>
   <div class="fmts">
-    <article class="fmt"><div class="ph"><img src="sk/s1.jpg" alt="한국어 0단계 견본 장면"><span class="num">1</span><span class="tg">Goods</span></div><div class="sw"></div><h3>「한국어 0단계」<br>엉뚱하게 답하기</h3><p>질문에 3초 고민 → 굿즈를 들고 자신 있게 엉뚱한 답. 뒤 멤버들의 무표정.</p></article>
-    <article class="fmt"><div class="ph"><img src="sk/s2.jpg" alt="립 릴레이 견본 장면"><span class="num">2</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「립 한 번 = 멤버 체인지」<br>다섯 컬러 릴레이</h3><p>립을 바르고 렌즈에 「쪽」 → 다음 멤버, 다른 컬러. 컬러와 텍스처만 보여줍니다.</p></article>
-    <article class="fmt"><div class="ph"><img src="sk/s3.jpg" alt="스킨케어 ASMR 견본 장면"><span class="num">3</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「블링원 스킨케어 ASMR」<br>다섯 손 릴레이</h3><p>손만 나오는 탑뷰. 뚜껑·펌핑·텍스처 소리. 스케줄이 바빠도 찍을 수 있습니다.</p></article>
-    <article class="fmt"><div class="ph"><img src="sk/s4.jpg" alt="마지막 하나 쟁탈전 견본 장면"><span class="num">4</span><span class="tg">Goods Shop</span></div><div class="sw"></div><h3>「5초 무언 상황극」<br>마지막 하나 쟁탈전</h3><p>굿즈 하나에 다섯 명이 동시에 손 → 슬로모션 → 반전. 「굿즈샵에서는 하나씩 드려요」.</p></article>
-    <article class="fmt"><div class="ph"><img src="sk/s5.jpg" alt="Bubble Gum 챌린지 견본 장면"><span class="num">5</span><span class="tg">Music</span></div><div class="sw"></div><h3>「Bubble Gum」<br>풍선껌 손 안무 챌린지</h3><p>앉아서도 되는 8초 손 안무. 풍선 부는 손 → 「팡」. 팬이 따라 하기 쉬운 도구.</p></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s1.mp4" poster="sk/s1.jpg" muted loop playsinline autoplay preload="metadata" aria-label="한국어 0단계 견본 장면"></video><span class="num">1</span><span class="tg">Goods</span></div><div class="sw"></div><h3>「한국어 0단계」<br>엉뚱하게 답하기</h3><p>질문에 3초 고민 → 굿즈를 들고 자신 있게 엉뚱한 답. 뒤 멤버들의 무표정.</p><button class="sbv" type="button" data-f="1">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s2.mp4" poster="sk/s2.jpg" muted loop playsinline autoplay preload="metadata" aria-label="립 릴레이 견본 장면"></video><span class="num">2</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「립 한 번 = 멤버 체인지」<br>다섯 컬러 릴레이</h3><p>립을 바르고 렌즈에 「쪽」 → 다음 멤버, 다른 컬러. 컬러와 텍스처만 보여줍니다.</p><button class="sbv" type="button" data-f="2">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s3.mp4" poster="sk/s3.jpg" muted loop playsinline autoplay preload="metadata" aria-label="스킨케어 ASMR 견본 장면"></video><span class="num">3</span><span class="tg">Cosmetics</span></div><div class="sw"></div><h3>「블링원 스킨케어 ASMR」<br>다섯 손 릴레이</h3><p>손만 나오는 탑뷰. 뚜껑·펌핑·텍스처 소리. 스케줄이 바빠도 찍을 수 있습니다.</p><button class="sbv" type="button" data-f="3">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s4.mp4" poster="sk/s4.jpg" muted loop playsinline autoplay preload="metadata" aria-label="마지막 하나 쟁탈전 견본 장면"></video><span class="num">4</span><span class="tg">Goods Shop</span></div><div class="sw"></div><h3>「5초 무언 상황극」<br>마지막 하나 쟁탈전</h3><p>굿즈 하나에 다섯 명이 동시에 손 → 슬로모션 → 반전. 「굿즈샵에서는 하나씩 드려요」.</p><button class="sbv" type="button" data-f="4">View sketchboard <span class="arr">→</span></button></article>
+    <article class="fmt"><div class="ph"><video src="sb/v/s5.mp4" poster="sk/s5.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Bubble Gum 챌린지 견본 장면"></video><span class="num">5</span><span class="tg">Music</span></div><div class="sw"></div><h3>「Bubble Gum」<br>풍선껌 손 안무 챌린지</h3><p>앉아서도 되는 8초 손 안무. 풍선 부는 손 → 「팡」. 팬이 따라 하기 쉬운 도구.</p><button class="sbv" type="button" data-f="5">View sketchboard <span class="arr">→</span></button></article>
   </div>
 </div></section>
 
@@ -337,6 +375,7 @@ dialog::backdrop{background:rgba(15,13,16,.9)}
   </div>
 </section>
 
+<dialog id="sb" aria-label="스케치보드"><button class="x" type="button" aria-label="닫기">✕</button><div class="in"></div></dialog>
 <dialog id="zoom"><img alt=""></dialog>
 <script>
 const d=document.getElementById('zoom'),im=d.querySelector('img');
@@ -346,6 +385,78 @@ const tr=document.getElementById('track');
 document.querySelectorAll('.sbtn').forEach(b=>b.addEventListener('click',()=>{
   const c=tr.querySelector('.case');tr.scrollBy({left:(c.offsetWidth+16)*+b.dataset.dir,behavior:'smooth'});
 }));
+const F=[
+ {id:1,title:"「한국어 0단계」 — 엉뚱하게 답하기",tags:["대사 최소","10~15초","2~5명","연결: 굿즈"],
+  goal:"서툰 한국어를 숨기지 않고 매력 포인트로 씁니다. 매회 질문만 바꿔 시리즈로 이어 갑니다.",
+  cuts:[["0~2초","질문","화면 밖 목소리로 질문. 멤버는 카메라를 보고 앉아 있음","자막: 「점심 뭐 먹었어요?」"],
+        ["2~5초","고민","고개를 갸웃, 진지하게 3초 고민","효과음: 째깍째깍"],
+        ["5~8초","엉뚱한 답","굿즈 키링을 번쩍 들고 자신 있게 「네! 맛있어요!」","자막: 「네! 맛있어요!」"],
+        ["8~10초","정적","뒤의 멤버들이 동시에 천천히 카메라 쪽으로 고개를 돌림","자막: 「오늘의 한국어: 실패」"]],
+  tip:"답은 진지할수록 웃깁니다. 뒤 멤버들은 끝까지 무표정.",prep:"굿즈 1개(키링·포토카드 등)",
+  caption:"오늘의 한국어 ✏️ #블링원 #BLINGONE #한국어공부 #kpop"},
+ {id:2,title:"「립 한 번 = 멤버 체인지」 — 다섯 컬러 릴레이",tags:["말 없음","10~15초","5명","연결: 화장품"],
+  goal:"멤버 얼굴과 립 컬러를 한 번에 보여줍니다. 효능 대신 컬러와 텍스처만 보여줍니다.",
+  cuts:[["0~3초","멤버 A","립을 바르고 입술을 맞댄 뒤 렌즈에 「쪽」","효과음: 쪽"],
+        ["3~6초","멤버 B","렌즈가 가려졌다 열리면 다른 컬러로 같은 동작","효과음: 팝"],
+        ["6~9초","멤버 C·D·E","같은 동작을 빠르게 이어 감","음원 비트에 맞춰 컷 전환"],
+        ["9~12초","마무리","다섯 컬러를 손등에 나란히 + 로고 컷","자막: 컬러 이름만"]],
+  tip:"모든 멤버가 같은 위치·같은 거리에서 찍어야 전환이 매끄럽습니다. 바닥에 테이프로 자리 표시.",prep:"블링원 립 제품(이미 있는 것)",
+  caption:"너의 컬러는? 💋 #블링원 #BLINGONE #립컬러 #kbeauty"},
+ {id:3,title:"「블링원 스킨케어 ASMR」 — 다섯 손 릴레이",tags:["말 없음","15~20초","손만 5명","연결: 화장품"],
+  goal:"얼굴이 나오지 않아도 되어 스케줄이 바쁠 때도 찍을 수 있습니다. 출시 전부터 쌓아 둡니다.",
+  cuts:[["0~4초","뚜껑","탑뷰. 첫 번째 손이 뚜껑을 「딸깍」 엶","소리만, 음악 없음"],
+        ["4~8초","펌핑·짜기","두 번째 손이 펌핑, 세 번째 손이 손등에 짜기","펌핑·짜는 소리"],
+        ["8~12초","텍스처","손등에 펴 바르며 결을 보여줌","크림 소리"],
+        ["12~15초","하트","다섯 손이 가운데 모여 하트, 마지막에 멤버들이 위에서 손 흔들기","로고 컷"]],
+  tip:"휴대폰 마이크를 제품 가까이. 소리가 이 포맷의 전부입니다. 조용한 방에서 찍습니다.",prep:"블링원 화장품(이미 있는 것), 흰 책상",
+  caption:"소리 켜고 보세요 🎧 #블링원 #BLINGONE #ASMR #skincare"},
+ {id:4,title:"「5초 무언 상황극」 — 마지막 하나 쟁탈전",tags:["말 없음","10초","5명","연결: 굿즈샵"],
+  goal:"반복해서 찍기 좋은 단골 포맷입니다. 멤버마다 고정 제스처를 정해 캐릭터를 쌓습니다.",
+  cuts:[["0~3초","대치","테이블 위 굿즈 하나, 다섯 명이 서로 눈치","긴장 음악"],
+        ["3~6초","동시에 손","다섯 명이 동시에 손을 뻗음 → 슬로모션","효과음: 휙"],
+        ["6~8초","반전","한 멤버가 먼저 집어 들고 해맑게 손 흔듦(옆에서 조용히 집어 가는 버전도 가능)","효과음: 레코드 긁는 소리"],
+        ["8~10초","마무리","남은 멤버들이 굳은 채 카메라를 봄 + 시그니처 제스처","자막: 「굿즈샵에서는 하나씩 드려요」"]],
+  tip:"슬로모션은 휴대폰 슬로모션 모드로 찍거나 편집에서 속도를 줄입니다. 표정은 과장할수록 좋습니다.",prep:"굿즈 1개",
+  caption:"하나 남았을 때 🫢 #블링원 #BLINGONE #굿즈 #kpop"},
+ {id:5,title:"「Bubble Gum」 풍선껌 손 안무 챌린지",tags:["말 없음","8~15초","1~5명","연결: 음원 · 굿즈"],
+  goal:"팬과 일반인이 따라 하기 쉬운 「도구」를 먼저 건넵니다. 다른 아이돌·크리에이터와 함께 찍기 좋습니다.",
+  cuts:[["0~2초","준비","나란히 앉아 정면, 두 손을 입 앞에 모음","음원 시작(빠른 버전)"],
+        ["2~5초","부풀리기","풍선 부는 손 → 손을 천천히 벌려 풍선이 커짐","—"],
+        ["5~6초","팡","박자에 맞춰 손뼉 「팡」, 뒤로 넘어가며 웃기","효과음: 팡"],
+        ["6~10초","포인트","카메라를 가리키며 윙크, 한 번 더 빠르게 반복","자막: #BubbleGumChallenge"]],
+  tip:"앉아서도 되는 동작이라 어디서든 찍을 수 있습니다. 「팡」 순간 굿즈가 튀어나오는 버전도 함께 찍어 둡니다.",prep:"없음",
+  caption:"같이 해요 🫧 #BubbleGumChallenge #블링원 #BLINGONE"}
+];
+const EN={1:"Korean Level 0",2:"Lip Relay",3:"Skincare ASMR",4:"The Last One",5:"Bubble Gum"};
+const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sb=document.getElementById('sb'),sbin=sb.querySelector('.in');
+const cards=[...document.querySelectorAll('.fmt .ph video')];
+function openSB(id){
+  const f=F.find(x=>x.id==id);
+  sbin.innerHTML=`<div class="top"><div><p class="mono"><b>0${f.id}</b>&nbsp;&nbsp;Sketchboard · ${f.id} / 5</p>
+    <h3>${EN[f.id]}<em>.</em></h3><p class="kt">${esc(f.title)}</p>
+    <div class="tags mono">${f.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="goal">${esc(f.goal)}</p></div>
+</div>
+   <div class="bd"><div class="vid"><video src="sb/v/s${f.id}.mp4" poster="sb/f/s${f.id}_1.jpg" controls playsinline loop preload="metadata"></video><p class="mono">AI sample · 소리 켜고 보세요</p></div>
+    <div><div class="frames">${f.cuts.map((c,i)=>`<div class="frame"><img src="sb/f/s${f.id}_${i+1}.jpg" alt="${esc(f.title)} 컷 ${i+1}">
+     <div class="t"><span class="mono" style="color:var(--pink)">Cut 0${i+1} · ${esc(c[0])}</span><span class="act">${esc(c[1])}</span><span class="do">${esc(c[2])}</span><span class="sub">${esc(c[3])}</span></div></div>`).join('')}</div>
+    <div class="notes"><div><span class="mono"><b>Tip</b> · 촬영 팁</span>${esc(f.tip)}</div><div><span class="mono"><b>Prep</b> · 준비물</span>${esc(f.prep)}</div><div><span class="mono"><b>Caption</b> · 캡션 예시</span><div class="cap">${esc(f.caption)}</div></div></div></div></div>`;
+  cards.forEach(v=>v.pause());
+  sb.showModal();sb.scrollTop=0;
+  const v=sbin.querySelector('video');v.muted=false;v.play().catch(()=>{});
+}
+document.querySelectorAll('.sbv').forEach(b=>b.addEventListener('click',()=>openSB(+b.dataset.f)));
+document.querySelectorAll('.fmt .ph').forEach((ph,i)=>{ph.style.cursor='pointer';ph.addEventListener('click',()=>openSB(i+1))});
+sb.querySelector('.x').addEventListener('click',()=>sb.close());
+sb.addEventListener('click',e=>{if(e.target===sb)sb.close()});
+sb.addEventListener('close',()=>{const v=sbin.querySelector('video');if(v)v.pause();sbin.innerHTML='';playVisible()});
+// card previews: play only while on screen
+const vis=new Set();
+function playVisible(){cards.forEach(v=>{if(vis.has(v)&&!sb.open)v.play().catch(()=>{});else v.pause()})}
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));playVisible()},{threshold:.25});
+  cards.forEach(v=>io.observe(v));
+}
 </script>
 
 </body>
