@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>블링원 숏폼 스케치보드</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#fbf7f6; --surface:#ffffff; --ink:#1d1416; --muted:#6f6266; --line:#eadfe1;
+  --accent:#e0244b; --accent-soft:#fde7ec; --ok:#1f7a55; --ok-soft:#e3f3ec;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151012; --surface:#1f191b; --ink:#f4eced; --muted:#ab9ca0; --line:#3a2f32;
+  --accent:#ff5c7c; --accent-soft:#3b1a22; --ok:#5fd0a0; --ok-soft:#173329; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151012; --surface:#1f191b; --ink:#f4eced; --muted:#ab9ca0; --line:#3a2f32;
+  --accent:#ff5c7c; --accent-soft:#3b1a22; --ok:#5fd0a0; --ok-soft:#173329; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:15px;line-height:1.7;
+  word-break:keep-all;overflow-wrap:break-word;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-block:44px 88px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;line-height:1.3;margin:0}
+h1{font-size:clamp(28px,5vw,42px);font-weight:900;letter-spacing:-.02em}
+h2{font-size:clamp(21px,3.2vw,26px);font-weight:900}
+h3{font-size:15px;font-weight:700}
+p{margin:0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--muted);max-width:66ch;margin-top:10px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+nav a{font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px}
+.back{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px}
+.howto{margin-top:20px;background:var(--ok-soft);border-radius:14px;padding:14px 18px;font-size:14px}
+.howto ol{margin:6px 0 0;padding-left:20px}
+.fmt{margin-top:56px;border-top:2px solid var(--ink);padding-top:22px;display:flex;flex-direction:column;gap:18px;scroll-margin-top:16px}
+.head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.no{font-size:44px;font-weight:900;color:var(--accent);line-height:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px;background:var(--line);color:var(--ink)}
+.tag.hi{background:var(--ok-soft);color:var(--ok)}
+.body{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:start}
+.vid{background:#000;border-radius:16px;overflow:hidden;aspect-ratio:9/16;max-width:100%}
+.vid video{width:100%;height:100%;display:block;object-fit:cover}
+.vcap{font-size:12px;color:var(--muted);margin-top:6px}
+.frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.frame{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.frame img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.frame .t{padding:8px 10px;display:flex;flex-direction:column;gap:3px}
+.frame .time{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--accent)}
+.frame .act{font-size:13px;font-weight:700}
+.frame .sub{font-size:12px;color:var(--muted)}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.notes div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px}
+.notes b{display:block;font-size:12px;color:var(--accent);margin-bottom:2px}
+.cap{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--bg);border-radius:8px;padding:6px 8px;margin-top:4px;user-select:all}
+footer{margin-top:56px;color:var(--muted);font-size:13px}
+@media (max-width:760px){.body{grid-template-columns:1fr}.vid{max-width:260px}.frames{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../">← 제안서로 돌아가기</a>
+    <div class="kicker">BLINGONE · Sketchboard · 2026-11-05</div>
+    <h1>블링원 숏폼 스케치보드</h1>
+    <p class="lede">제안서의 다섯 가지 포맷을 「그대로 따라 찍을 수 있게」 컷 단위로 나눴습니다. 왼쪽 영상은 멤버 프로필 사진으로 만든 AI 견본입니다. 그대로 똑같이 할 필요는 없고, 컷 순서와 타이밍만 맞추면 됩니다.</p>
+    <nav><a href="#f1">1 한국어 0단계</a><a href="#f2">2 립 릴레이</a><a href="#f3">3 스킨케어 ASMR</a><a href="#f4">4 마지막 하나</a><a href="#f5">5 Bubble Gum 챌린지</a></nav>
+    <div class="howto"><b>찍는 방법 (공통)</b>
+      <ol><li>휴대폰 세로, 밝은 곳(창가나 연습실 조명). 삼각대나 거치대가 있으면 좋습니다.</li>
+      <li>컷마다 2~3번씩 찍어 두면 편집할 때 고르기 쉽습니다.</li>
+      <li>자막·효과음·음원은 업로드 전 편집에서 넣습니다. 촬영할 때는 동작과 표정만 신경 쓰면 됩니다.</li></ol></div>
+  </header>
+  <div id="formats"></div>
+  <footer>견본 영상은 AI로 만든 참고용이며, 얼굴·제품·배경이 실제와 다를 수 있습니다. 제품은 로고 없는 견본으로 표현했습니다. 실제 촬영은 블링원 굿즈·화장품 실물로 합니다.</footer>
+</div>
+
+<script>
+const F=[
+ {id:1,title:"「한국어 0단계」 — 엉뚱하게 답하기",tags:["대사 최소","10~15초","2~5명","연결: 굿즈"],
+  goal:"서툰 한국어를 숨기지 않고 매력 포인트로 씁니다. 매회 질문만 바꿔 시리즈로 이어 갑니다.",
+  cuts:[["0~2초","질문","화면 밖 목소리로 질문. 멤버는 카메라를 보고 앉아 있음","자막: 「점심 뭐 먹었어요?」"],
+        ["2~5초","고민","고개를 갸웃, 진지하게 3초 고민","효과음: 째깍째깍"],
+        ["5~8초","엉뚱한 답","굿즈 키링을 번쩍 들고 자신 있게 「네! 맛있어요!」","자막: 「네! 맛있어요!」"],
+        ["8~10초","정적","뒤의 멤버들이 동시에 천천히 카메라 쪽으로 고개를 돌림","자막: 「오늘의 한국어: 실패」"]],
+  tip:"답은 진지할수록 웃깁니다. 뒤 멤버들은 끝까지 무표정.",prep:"굿즈 1개(키링·포토카드 등)",
+  caption:"오늘의 한국어 ✏️ #블링원 #BLINGONE #한국어공부 #kpop"},
+ {id:2,title:"「립 한 번 = 멤버 체인지」 — 다섯 컬러 릴레이",tags:["말 없음","10~15초","5명","연결: 화장품"],
+  goal:"멤버 얼굴과 립 컬러를 한 번에 보여줍니다. 효능 대신 컬러와 텍스처만 보여줍니다.",
+  cuts:[["0~3초","멤버 A","립을 바르고 입술을 맞댄 뒤 렌즈에 「쪽」","효과음: 쪽"],
+        ["3~6초","멤버 B","렌즈가 가려졌다 열리면 다른 컬러로 같은 동작","효과음: 팝"],
+        ["6~9초","멤버 C·D·E","같은 동작을 빠르게 이어 감","음원 비트에 맞춰 컷 전환"],
+        ["9~12초","마무리","다섯 컬러를 손등에 나란히 + 로고 컷","자막: 컬러 이름만"]],
+  tip:"모든 멤버가 같은 위치·같은 거리에서 찍어야 전환이 매끄럽습니다. 바닥에 테이프로 자리 표시.",prep:"블링원 립 제품(이미 있는 것)",
+  caption:"너의 컬러는? 💋 #블링원 #BLINGONE #립컬러 #kbeauty"},
+ {id:3,title:"「블링원 스킨케어 ASMR」 — 다섯 손 릴레이",tags:["말 없음","15~20초","손만 5명","연결: 화장품"],
+  goal:"얼굴이 나오지 않아도 되어 스케줄이 바쁠 때도 찍을 수 있습니다. 출시 전부터 쌓아 둡니다.",
+  cuts:[["0~4초","뚜껑","탑뷰. 첫 번째 손이 뚜껑을 「딸깍」 엶","소리만, 음악 없음"],
+        ["4~8초","펌핑·짜기","두 번째 손이 펌핑, 세 번째 손이 손등에 짜기","펌핑·짜는 소리"],
+        ["8~12초","텍스처","손등에 펴 바르며 결을 보여줌","크림 소리"],
+        ["12~15초","하트","다섯 손이 가운데 모여 하트, 마지막에 멤버들이 위에서 손 흔들기","로고 컷"]],
+  tip:"휴대폰 마이크를 제품 가까이. 소리가 이 포맷의 전부입니다. 조용한 방에서 찍습니다.",prep:"블링원 화장품(이미 있는 것), 흰 책상",
+  caption:"소리 켜고 보세요 🎧 #블링원 #BLINGONE #ASMR #skincare"},
+ {id:4,title:"「5초 무언 상황극」 — 마지막 하나 쟁탈전",tags:["말 없음","10초","5명","연결: 굿즈샵"],
+  goal:"반복해서 찍기 좋은 단골 포맷입니다. 멤버마다 고정 제스처를 정해 캐릭터를 쌓습니다.",
+  cuts:[["0~3초","대치","테이블 위 굿즈 하나, 다섯 명이 서로 눈치","긴장 음악"],
+        ["3~6초","동시에 손","다섯 명이 동시에 손을 뻗음 → 슬로모션","효과음: 휙"],
+        ["6~8초","반전","한 멤버가 먼저 집어 들고 해맑게 손 흔듦(옆에서 조용히 집어 가는 버전도 가능)","효과음: 레코드 긁는 소리"],
+        ["8~10초","마무리","남은 멤버들이 굳은 채 카메라를 봄 + 시그니처 제스처","자막: 「굿즈샵에서는 하나씩 드려요」"]],
+  tip:"슬로모션은 휴대폰 슬로모션 모드로 찍거나 편집에서 속도를 줄입니다. 표정은 과장할수록 좋습니다.",prep:"굿즈 1개",
+  caption:"하나 남았을 때 🫢 #블링원 #BLINGONE #굿즈 #kpop"},
+ {id:5,title:"「Bubble Gum」 풍선껌 손 안무 챌린지",tags:["말 없음","8~15초","1~5명","연결: 음원 · 굿즈"],
+  goal:"팬과 일반인이 따라 하기 쉬운 「도구」를 먼저 건넵니다. 다른 아이돌·크리에이터와 함께 찍기 좋습니다.",
+  cuts:[["0~2초","준비","나란히 앉아 정면, 두 손을 입 앞에 모음","음원 시작(빠른 버전)"],
+        ["2~5초","부풀리기","풍선 부는 손 → 손을 천천히 벌려 풍선이 커짐","—"],
+        ["5~6초","팡","박자에 맞춰 손뼉 「팡」, 뒤로 넘어가며 웃기","효과음: 팡"],
+        ["6~10초","포인트","카메라를 가리키며 윙크, 한 번 더 빠르게 반복","자막: #BubbleGumChallenge"]],
+  tip:"앉아서도 되는 동작이라 어디서든 찍을 수 있습니다. 「팡」 순간 굿즈가 튀어나오는 버전도 함께 찍어 둡니다.",prep:"없음",
+  caption:"같이 해요 🫧 #BubbleGumChallenge #블링원 #BLINGONE"}
+];
+const root=document.getElementById('formats');
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+F.forEach(f=>{
+  const s=document.createElement('section');s.className='fmt';s.id='f'+f.id;
+  s.innerHTML=`<div class="head"><div class="no">${f.id}</div><div><h2>${esc(f.title)}</h2>
+    <div class="meta">${f.tags.map((t,i)=>`<span class="tag${i==0?' hi':''}">${esc(t)}</span>`).join('')}</div>
+    <p style="margin-top:8px;color:var(--muted);max-width:66ch">${esc(f.goal)}</p></div></div>
+   <div class="body">
+    <div><div class="vid"><video src="v/s${f.id}.mp4" controls playsinline loop preload="metadata" poster="f/s${f.id}_1.jpg"></video></div><p class="vcap">AI 견본 영상 · 소리 켜고 보세요</p></div>
+    <div><div class="frames">${f.cuts.map((c,i)=>`<div class="frame"><img src="f/s${f.id}_${i+1}.jpg" alt="${esc(f.title)} 컷 ${i+1}" loading="lazy">
+      <div class="t"><span class="time">컷 ${i+1} · ${esc(c[0])}</span><span class="act">${esc(c[1])}</span><span>${esc(c[2])}</span><span class="sub">${esc(c[3])}</span></div></div>`).join('')}</div>
+     <div class="notes"><div><b>촬영 팁</b>${esc(f.tip)}</div><div><b>준비물</b>${esc(f.prep)}</div><div><b>업로드 캡션 예시</b><div class="cap">${esc(f.caption)}</div></div></div></div>
+   </div>`;
+  root.appendChild(s);
+});
+</script>
+
+</body>
+</html>
